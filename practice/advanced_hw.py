@@ -2,7 +2,7 @@
 
 admin = "Ms. LaRose"
 coder = "Liz"
-returning_users = []
+returning_users = ["Bob", "Carl", "Derik"]
 
 name = input("What is your name: ")
 

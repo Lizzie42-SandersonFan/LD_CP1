@@ -1,4 +1,4 @@
-// This is the programming final I made with a group but in C!!!!
+// Project from CSP but written in C
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -29,8 +29,8 @@ char customerAnswer[200];
 int userNotTrying = 0;
 int certificate = 0;
 
-void toppingRequest(char theTopping[]) {
-    printf("\nWould you like %s (YES or NO)?\n", theTopping);
+void toppingRequest(char allToppings[3]) {
+    printf("\nWould you like %s (YES or NO)?\n", allToppings[3]);
     scanf("%s", response);
     
 }
@@ -129,12 +129,12 @@ int main(void){
 
     // NEED HELP PLEASE
     int i;
-    for(i = 0; i < 4; i++){
-        toppingRequest(i);
-        int x;
-        for (int x = 0; response[x] != '\0'; x++) {
-            response[x] = toupper(response[x]);
-        }
+    for(i = 0; i < 3; i++){
+        toppingRequest(allToppings[i]);
+        //int x;
+        //for (int x = 0; response[x] != '\0'; x++) {
+            //response[x] = toupper(response[x]);
+        //}
         if (i == "sprinkles"){
             if (response == "YES" || response == "YA" || response == "SURE" || response == "YEAH" || response == "YEE"){
                 isSprinkles = true;

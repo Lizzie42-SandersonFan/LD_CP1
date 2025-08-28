@@ -19,5 +19,6 @@ for y in classes:
 
 #average out the grades
 average = sum(grades) / len(grades)
+round(average, 2)
 
 print("The average grade between all of your classes is:", average)

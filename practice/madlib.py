@@ -18,7 +18,6 @@ def usersStoryChoice():
         print("That is not a valid input, please try again.")
         usersStoryChoice()
 
-
 def storyOne():
     # Variables in order based on story outline
     global dragon_name

@@ -54,13 +54,15 @@ def GPACheck():
     global gpa
     global rounded_gpa
     global busted_gpa
+    global gpa_length
 
     gpa = input("\nWhat is (or was) your high school GPA (Grade Point Average):\n")
     busted_gpa = gpa.isalpha()
+    gpa_length = len(gpa)
 
-    if busted_gpa == False:
+    if busted_gpa == False and gpa_length <= 4:
         float_gpa = float(gpa)
-        rounded_gpa = round(float_gpa, 1)
+        rounded_gpa = round(float_gpa, 2)
     else:
         print("That is not a valid input, please try again:\n")
         GPACheck()
@@ -101,9 +103,9 @@ phone_number = phone_num_pt_one + " " + phone_num_pt_two + " " + phone_num_pt_th
 
 # GPA Question
 GPACheck()
-if busted_gpa == False:
+if busted_gpa == False and gpa_length <= 4:
     float_gpa = float(gpa)
-    rounded_gpa = round(float_gpa, 1)
+    rounded_gpa = round(float_gpa, 2)
 else:
     print("That is not a valid input, please try again:\n")
     GPACheck()

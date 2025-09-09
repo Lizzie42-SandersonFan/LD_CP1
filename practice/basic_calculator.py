@@ -10,9 +10,7 @@
 # Functions(?) for asking questions
 def numOneAsk():
     global num_one
-    global one_validation
     num_one = int(input("Give me a WHOLE number:\n"))
-    one_validation = num_one.isdigit()
 
 def numTwoAsk():
     global num_two
@@ -27,13 +25,13 @@ def equationChoiceAsk():
 numOneAsk()
 
 # Ifs to check inputs
-if one_validation == True:
+if num_one == num_one:
     numTwoAsk()
 else:
     print("That is not a valid input, please try again.")
     numOneAsk()
 
-if num_two == int:
+if num_two == num_two:
     equationChoiceAsk()
 else:
     print("That is not a valid input, please try again.")

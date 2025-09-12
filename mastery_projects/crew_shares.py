@@ -3,7 +3,7 @@ import time
 delay = 0.04
 
 
-# Welcom user and give background
+# Welcome user and give background
 opening = "Hello! You are a captain on a ship and you and your crew just came back from an adventure looking for treasure.\nAfter your ship got to port, you didn't have enough time to calculate shares and just gave each of your crew members $500.\nThis program will calculate how much you, your first mate, and each crew member gets for you!\nBut first, some information is needed.\n"
 for char in opening:
     print(char, end="", flush=True)

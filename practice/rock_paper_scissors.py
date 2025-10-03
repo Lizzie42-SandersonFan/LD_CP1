@@ -64,13 +64,13 @@ Enter the corisponding number for play:\n"""
         player_score += 1
     # Computer Win if
     elif computer_play == 1 and player_choice == '3':
-        print("Sorry, the computer beat you!")
+        print("Sorry, the computer beat you with Rock!")
         computer_score += 1
     elif computer_play == 2 and player_choice == '1':
-        print("Sorry, the computer beat you!")
+        print("Sorry, the computer beat you with Paper!")
         computer_score += 1
     elif computer_play == 3 and player_choice == '2':
-        print("Sorry, the computer beat you!")
+        print("Sorry, the computer beat you with Scissors!")
         computer_score += 1
     # Draw if
     elif computer_play == 1 and player_choice == '1':

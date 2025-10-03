@@ -30,11 +30,27 @@ Enter the corisponding number for play:\n"""
     # Ways to Win: Rock > scissors, Paper > rock, Scissors > paper
 
     # Player Wins if
-    if player_choice >= '5' or player_choice <= 0:
-        print("Sorry, that is not a valid input, please try again!")
+    if player_choice >= '5' or player_choice <= '0':
+        print("Sorry, that is not a valid input, please try again!\n")
         continue
     elif player_choice == '4':
-        print("Thank you for playing!")
+        if player_score == computer_score:
+            end = "It was a draw!\n"
+        elif player_score > computer_score:
+            end = "You beat the computer!!\n"
+        elif computer_score > player_score:
+            end = "Sorry, the computer beat you!!\n"
+        else:
+            end = "How in the world????\n"
+        goodbye = f"Thank you for playing!!\nFinal Score:\nYou scored {player_score}\nComputere Scored {computer_score}\n"
+
+        for char in goodbye:
+            print(char, end="", flush=True)
+            time.sleep(delay)
+        time.sleep(1)
+        for char in end:
+            print(char, end="", flush=True)
+            time.sleep(delay)
         break
     elif player_choice == '1' and computer_play == 3:
         print("You won!!")

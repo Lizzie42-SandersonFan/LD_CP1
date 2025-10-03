@@ -26,11 +26,12 @@ Enter the corisponding number for play:\n"""
         time.sleep(delay)
 
     player_choice = input()
+    player_alpha = player_choice.isalpha()
 
     # Ways to Win: Rock > scissors, Paper > rock, Scissors > paper
 
     # Player Wins if
-    if player_choice >= '5' or player_choice <= '0':
+    if (player_choice >= '5' or player_choice <= '0') or player_alpha == True:
         print("Sorry, that is not a valid input, please try again!\n")
         continue
     elif player_choice == '4':

@@ -43,7 +43,7 @@ Enter the corisponding number for play:\n"""
             end = "Sorry, the computer beat you!!\n"
         else:
             end = "How in the world????\n"
-        goodbye = f"Thank you for playing!!\nFinal Score:\nYou scored {player_score}\nComputere Scored {computer_score}\n"
+        goodbye = f"Thank you for playing!!\nFinal Score:\nYou scored {player_score}\nComputer Scored {computer_score}\nASCII Art from 'wynand1004' on GitHub!\n"
 
         for char in goodbye:
             print(char, end="", flush=True)
@@ -54,31 +54,186 @@ Enter the corisponding number for play:\n"""
             time.sleep(delay)
         break
     elif player_choice == '1' and computer_play == 3:
-        print("You won!!")
+        print("""
+You Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+
+Computer Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+              """
+)
+        print("You Won!!")
         player_score += 1
     elif player_choice == '2' and computer_play == 1:
+        print("""
+You Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+              
+Computer Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+""")
         print("You won!!")
         player_score += 1
     elif player_choice == '3' and computer_play == 2:
+        print("""
+You Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+              
+Computer Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+""")
         print("You won!!")
         player_score += 1
     # Computer Win if
     elif computer_play == 1 and player_choice == '3':
-        print("Sorry, the computer beat you with Rock!")
+        print("""
+Computer Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+
+You Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+              """
+)
+        print("Sorry, the computer beat you!")
         computer_score += 1
     elif computer_play == 2 and player_choice == '1':
-        print("Sorry, the computer beat you with Paper!")
+        print("""
+Computer Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+              
+You Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+""")
+        print("Sorry, the computer beat you!")
         computer_score += 1
     elif computer_play == 3 and player_choice == '2':
-        print("Sorry, the computer beat you with Scissors!")
+        print("""
+Computer Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+              
+You Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+""")
+        print("Sorry, the computer beat you!")
         computer_score += 1
     # Draw if
     elif computer_play == 1 and player_choice == '1':
-        print("Oh No! Must have been a draw!")
+        print("""
+You Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+              
+Computer Played:
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+""")
+        print("Oh No! It's a draw!")
     elif computer_play == 2 and player_choice == '2':
-        print("Oh No! Must have been a draw!")
+        print("""
+You Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+              
+Computer Played:
+     _______
+---'    ____)____
+           ______)
+          _______)
+         _______)
+---.__________)
+""")
+        print("Oh No! It's a draw!")
     elif computer_play == 3 and player_choice == '3':
-        print("Oh No! Must have been a draw!")
+        print("""
+You Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+              
+Computer Played:
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+""")
+        print("Oh No! It's a draw!")
     else:
         print("How was this triggered?")
 

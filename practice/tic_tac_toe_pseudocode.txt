@@ -105,6 +105,8 @@ loop (while): True
             display "How......?"
     - Now that the user has picked a box, we show the board
     display BOARD
+    - Now we need to check if either: someone won/lost or if it is a draw
+
     
     - Now for computer's turn
     - We will have the computer pick a random number 1 to 9. COMPUTER_CHOICE

@@ -1,4 +1,5 @@
 LD 2nd Tic Tac Toe Pseudocode
+# Import random to have the computer later use a random number generator
 
 # First thing is to declare and initalize variable. These will be displayed in the board and can be changed depending on user and computer choices
 BOX1 -> 1

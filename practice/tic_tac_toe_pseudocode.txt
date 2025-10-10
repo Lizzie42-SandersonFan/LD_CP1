@@ -1,6 +1,6 @@
 LD 2nd Tic Tac Toe Pseudocode
 
-- first thing is to declare and initalize variable. These will be displayed in the board and can be changed depending on user and computer choices
+# First thing is to declare and initalize variable. These will be displayed in the board and can be changed depending on user and computer choices
 BOX1 -> 1
 BOX2 -> 2
 BOX3 -> 3
@@ -11,181 +11,400 @@ BOX7 -> 7
 BOX8 -> 8
 BOX9 -> 9
 
-- Next is to establish our board, likely as a variable sho that we don't have to write it out every time. This will contain both the dividers and BOX variables by using an f string
+# Next is to establish our board as a variable sho that we don't have to write it out every time. This will contain both the dividers and BOX variables by using an f and multi-lined string
 BOARD -> f""" {BOX1} | {BOX2} | {BOX3} (first row)
 ----------  (Divider between rows)
  {BOX4} | {BOX5} | {BOX6}  (second row)
 ---------- (Divider)
  {BOX7} | {BOX8} | {BOX9}  (Last row)"""
 
-- Now we set up a loop that will run the game using while
+# Now lets set up a way to know if someone won
+WINNER -> False
+
+# Now we set up a loop that will run the game using while
 loop (while): True
     display the BOARD
-    - use input to ask which box the user will play in. USER_CHOICE
-    - Check if choice is valid using if
+    # use input to ask which box the user will play in. USER_CHOICE
+    # Check if choice is valid using if
     if USER_CHOICE != 1 or USER_CHOICE != 2 or USER_CHOICE != 3 or USER_CHOICE != 4 or USER_CHOICE != 5 or USER_CHOICE != 6 or USER_CHOICE != 7 or USER_CHOICE != 8 or USER_CHOICE != 9:
-        - tell the user that their choice is invalid and to try again using continue to get back to the top of the loop
+    # Tell the user that their choice is invalid and to try again using continue to get back to the top of the loop
         continue
     else:
-        - Our else statment will run if the user picked a valid box. Now we use more if and otherwise statments to figure out which box they picked and ajust the board to account for it
+        # Our else statment will run if the user picked a valid box. Now we use more if and otherwise statments to figure out which box they picked and ajust the board to account for it
         if USER_CHOICE == 1:
-        - This sees if user picked one, now we check if it is avaliable
+        # This sees if user picked one, now we check if it is avaliable
             if BOX1 != 'X' or BOX1 != 'O':
-                - Now we change BOX1 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX1 Value to user's symbol (X) if it IS avaliable
                 BOX1 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 2:
-            - This sees if user picked two, now we check if it is avaliable
+            # This sees if user picked two, now we check if it is avaliable
             if BOX2 != 'X' or BOX2 != 'O':
-                - Now we change BOX2 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX2 Value to user's symbol (X) if it IS avaliable
                 BOX2 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 3:
-            - This sees if user picked three, now we check if it is avaliable
+            # This sees if user picked three, now we check if it is avaliable
             if BOX3 != 'X' or BOX3 != 'O':
-                - Now we change BOX3 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX3 Value to user's symbol (X) if it IS avaliable
                 BOX3 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 4:
-            - This sees if user picked four, now we check if it is avaliable
+            # This sees if user picked four, now we check if it is avaliable
             if BOX4 != 'X' or BOX4 != 'O':
-                - Now we change BOX4 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX4 Value to user's symbol (X) if it IS avaliable
                 BOX4 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 5:
-            - This sees if user picked five, now we check if it is avaliable
+            # This sees if user picked five, now we check if it is avaliable
             if BOX5 != 'X' or BOX5 != 'O':
-                - Now we change BOX5 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX5 Value to user's symbol (X) if it IS avaliable
                 BOX5 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 6:
-            - This sees if user picked six, now we check if it is avaliable
+            # This sees if user picked six, now we check if it is avaliable
             if BOX6 != 'X' or BOX6 != 'O':
-                - Now we change BOX6 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX6 Value to user's symbol (X) if it IS avaliable
                 BOX6 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 7:
-            - This sees if user picked seven, now we check if it is avaliable
+            # This sees if user picked seven, now we check if it is avaliable
             if BOX7 != 'X' or BOX7 != 'O':
-                - Now we change BOX7 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX7 Value to user's symbol (X) if it IS avaliable
                 BOX7 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 8:
-            - This sees if user picked eight, now we check if it is avaliable
+            # This sees if user picked eight, now we check if it is avaliable
             if BOX8 != 'X' or BOX8 != 'O':
-                - Now we change BOX8 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX8 Value to user's symbol (X) if it IS avaliable
                 BOX8 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         or if USER_CHOICE == 9:
-            - This sees if user picked nine, now we check if it is avaliable
+            # This sees if user picked nine, now we check if it is avaliable
             if BOX9 != 'X' or BOX9 != 'O':
-                - Now we change BOX9 Value to user's symbol (X) if it IS avaliable
+                # Now we change BOX9 Value to user's symbol (X) if it IS avaliable
                 BOX9 -> 'X'
             else:
-                - If the box is unavalible, we tell the user and their turn is skipped
+                # If the box is unavalible, we tell the user and their turn is skipped
                 display "You can't play there, your turn has been skipped"
         else:
-            - This is a just in case else if something went horribly wrong
+            # This is a just in case else if something went horribly wrong
             display "How......?"
-    - Now that the user has picked a box, we show the board
+    # Now that the user has picked a box, we show the board
     display BOARD
-    - Now we need to check if either: someone won/lost or if it is a draw
+    # Now we need to check if either: someone won/lost or if it is a draw
+    # The win conditions are 1, 2, 3; 4, 5, 6; 7, 8, 9; 1, 4, 7; 2, 5, 8; 3, 6, 9; 1, 5, 9; 3, 5, 7
+    if BOX1 == 'X' and BOX2 == 'X' and BOX3 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        display player won
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX4 == 'X' and BOX5 == 'X' and BOX6 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX7 == 'X' and BOX8 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'X' and BOX4 == 'X' and BOX7 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX2 == 'X' and BOX5 == 'X' and BOX8 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'X' and BOX6 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'X' and BOX5 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'X' and BOX5 == 'X' and BOX7 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    # We are going to coninue with the or ifs but now checking if the computer won
+    or if BOX1 == 'O' and BOX2 == 'O' and BOX3 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX4 == 'O' and BOX5 == 'O' and BOX6 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX7 == 'O' and BOX8 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'O' and BOX4 == 'O' and BOX7 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX2 == 'O' and BOX5 == 'O' and BOX8 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'O' and BOX6 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'O' and BOX5 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'O' and BOX5 == 'O' and BOX7 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    # Now, continuing with the or ifs, check if the board if filled AND there is no WINNER
+    or if (BOX1 != 1 and BOX2 != 2 and BOX3 != 3 and BOX4 != 4 and BOX5 != 5 and BOX5 != 5 and BOX6 != 6 and BOX7 != 7 and BOX8 != 8 and BOX9 != 9) and WINNER == False:
+        # This is checking to see if all the boxes are taken by either X or O and if there is no winner. We can now tell the user it was a tie, show the board, and exit the game
+        display "It was a tie!"
+        display BOARD
+        break
+    else:
+        # This will hit if no one won or if there is no draw, so we will tell the player that it is a new turn
+        display "Ok, next turn"
 
-    
-    - Now for computer's turn
-    - We will have the computer pick a random number 1 to 9. COMPUTER_CHOICE
-    - Then will use an if statment to see if the number corrisponding to a box is avalible. If it is not avalible, then the computer will lose its turn.
+    # Now for computer's turn
+    # We will have the computer pick a random number 1 to 9.
+    COMPUTER_CHOICE -> random.randint(1, 10)
+    # Then will use an if statment to see if the number corrisponding to a box is avalible. If it is not avalible, then the computer will lose its turn.
     if COMPUTER_CHOICE == 1:
-        -This will trigger if the computer picked 1, now to check if it avaliable
+        # This will trigger if the computer picked 1, now to check if it avaliable
         if BOX1 != 'X' or BOX1 != 'O':
-                - Now we change BOX1 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX1 Value to computer's symbol (O) if it IS avaliable
                 BOX1 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 2:
-        -This will trigger if the computer picked 2, now to check if it avaliable
+        # This will trigger if the computer picked 2, now to check if it avaliable
         if BOX2 != 'X' or BOX2 != 'O':
-                - Now we change BOX2 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX2 Value to computer's symbol (O) if it IS avaliable
                 BOX2 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 3:
-        -This will trigger if the computer picked 3, now to check if it avaliable
+        # This will trigger if the computer picked 3, now to check if it avaliable
         if BOX3 != 'X' or BOX3 != 'O':
-                - Now we change BOX3 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX3 Value to computer's symbol (O) if it IS avaliable
                 BOX3 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 4:
-        -This will trigger if the computer picked 4, now to check if it avaliable
+        # This will trigger if the computer picked 4, now to check if it avaliable
         if BOX4 != 'X' or BOX4 != 'O':
-                - Now we change BOX4 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX4 Value to computer's symbol (O) if it IS avaliable
                 BOX4 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 5:
-        -This will trigger if the computer picked 5, now to check if it avaliable
+        # This will trigger if the computer picked 5, now to check if it avaliable
         if BOX5 != 'X' or BOX5 != 'O':
-                - Now we change BOX5 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX5 Value to computer's symbol (O) if it IS avaliable
                 BOX5 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 6:
-        -This will trigger if the computer picked 6, now to check if it avaliable
+        # This will trigger if the computer picked 6, now to check if it avaliable
         if BOX6 != 'X' or BOX6 != 'O':
-                - Now we change BOX6 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX6 Value to computer's symbol (O) if it IS avaliable
                 BOX6 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 7:
-        -This will trigger if the computer picked 7, now to check if it avaliable
+        # This will trigger if the computer picked 7, now to check if it avaliable
         if BOX7 != 'X' or BOX7 != 'O':
-                - Now we change BOX7 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX7 Value to computer's symbol (O) if it IS avaliable
                 BOX7 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 8:
-        -This will trigger if the computer picked 8, now to check if it avaliable
+        # This will trigger if the computer picked 8, now to check if it avaliable
         if BOX8 != 'X' or BOX8 != 'O':
-                - Now we change BOX8 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX8 Value to computer's symbol (O) if it IS avaliable
                 BOX8 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     or if COMPUTER_CHOICE == 9:
-        -This will trigger if the computer picked 9, now to check if it avaliable
+        # This will trigger if the computer picked 9, now to check if it avaliable
         if BOX9 != 'X' or BOX9 != 'O':
-                - Now we change BOX9 Value to computer's symbol (O) if it IS avaliable
+                # Now we change BOX9 Value to computer's symbol (O) if it IS avaliable
                 BOX9 -> 'O'
             else:
-                - If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
+                # If the box is unavalible, we tell the user that this computer picked an unavalible box and it is their turn again
                 display "The computer picked an unavalible box, it's your turn!"
     else:
-        - This is a just in case else if something went horribly wrong
+        # This is a just in case else if something went horribly wrong
         display "How......?"
 
-    - Now that the computer has picked a box, we show the board
+    # Now that the computer has picked a box, we show the board
     display BOARD
+    # Now we need to check if either: someone won/lost or if it is a draw (This can be copy and pasted from avove with NO CHANGE NESSISARY)
+    if BOX1 == 'X' and BOX2 == 'X' and BOX3 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        display player won
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX4 == 'X' and BOX5 == 'X' and BOX6 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX7 == 'X' and BOX8 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'X' and BOX4 == 'X' and BOX7 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX2 == 'X' and BOX5 == 'X' and BOX8 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'X' and BOX6 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'X' and BOX5 == 'X' and BOX9 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'X' and BOX5 == 'X' and BOX7 == 'X':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    # We are going to coninue with the or ifs but now checking if the computer won
+    or if BOX1 == 'O' and BOX2 == 'O' and BOX3 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX4 == 'O' and BOX5 == 'O' and BOX6 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX7 == 'O' and BOX8 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'O' and BOX4 == 'O' and BOX7 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX2 == 'O' and BOX5 == 'O' and BOX8 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'O' and BOX6 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX1 == 'O' and BOX5 == 'O' and BOX9 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    or if BOX3 == 'O' and BOX5 == 'O' and BOX7 == 'O':
+        # Lets change WINNER to true. Reason further down in the if chain
+        WINNER -> True
+        # We can now end the game by breaking and show the board
+        display BOARD
+        break
+    # Now, continuing with the or ifs, check if the board if filled AND there is no WINNER
+    or if (BOX1 != 1 and BOX2 != 2 and BOX3 != 3 and BOX4 != 4 and BOX5 != 5 and BOX5 != 5 and BOX6 != 6 and BOX7 != 7 and BOX8 != 8 and BOX9 != 9) and WINNER == False:
+        # This is checking to see if all the boxes are taken by either X or O and if there is no winner. We can now tell the user it was a tie, show the board, and exit the game
+        display "It was a tie!"
+        display BOARD
+        break
+    else:
+        # This will hit if no one won or if there is no draw, so we will tell the player that it is a new turn
+        display "Ok, next turn"

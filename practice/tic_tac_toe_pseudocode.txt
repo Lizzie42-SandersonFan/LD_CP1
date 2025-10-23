@@ -12,7 +12,7 @@ BOX7 -> 7
 BOX8 -> 8
 BOX9 -> 9
 
-# Next is to establish our board as a variable sho that we don't have to write it out every time. This will contain both the dividers and BOX variables by using an f and multi-lined string
+# Next is to establish our board as a variable so that we don't have to write it out every time. This will contain both the dividers and BOX variables by using an f and multi-lined string
 BOARD -> f""" {BOX1} | {BOX2} | {BOX3} (first row)
 ----------  (Divider between rows)
  {BOX4} | {BOX5} | {BOX6}  (second row)

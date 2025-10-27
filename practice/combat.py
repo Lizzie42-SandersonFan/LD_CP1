@@ -43,54 +43,74 @@ if class_choice == 1:
     health = 22
     aromor = 13
     attack = random.randint(1,21) + 3
-    atk_print = "d20 + 3"
+    atk_print = "1d20 + 3"
     damage = random.randint(1,7) + 2
-    dmg_print = "d6 + 2"
+    dmg_print = "1d6 + 2"
     weapon = "Shortsword"
 elif class_choice == 2:
     class_name = "Rogue"
     health = 26
     aromor = 13
     attack = random.randint(1,21) + 4
-    atk_print = "d20 + 4"
+    atk_print = "1d20 + 4"
     damage = random.randint(1,7) + 3
+    dmg_print = "1d6 + 3"
     weapon = "Dagger"
 elif class_choice == 3:
     class_name = "Warlock"
     health = 22
     aromor = 13
     attack = random.randint(1,21) + 3
+    atk_print = "1d20 + 3"
     damage = random.randint(1,7) + 2
+    dmg_print = "1d6 + 2"
     weapon = "Dagger"
 elif class_choice == 4:
     class_name = "Wizard"
     health = 22
     aromor = 12
     attack = random.randint(1,21) + 3
+    atk_print = "1d20 + 3"
     damage = random.randint(1,9) + 2
+    dmg_print = "1d8 + 2"
     weapon = "Longsword"
 else:
     print("Something went horribly wrong...")
 
-stats_show = f"Great, here are your stats for {class_name}!\nHealth: {health}\nDefense: {aromor}\nAttack: d20 + \nDamage: \n"
+stats_show = f"Great, here are your stats for {class_name}!\nHealth: {health}\nDefense: {aromor}\nAttack: {atk_print}\nDamage: {dmg_print}\n"
 for char in stats_show:
     print(char, end="", flush=True)
     time.sleep(delay)
 print("You are fighting a Giant Badger!")
+badger_health = 15
+badger_aromor = 13
 while True:
     player_initiative = random.randint(1,21)
     badger_initiative = 10
     player_dodge = False
-    # \/ Badger stats
-    badger_health = 15
-    badger_aromor = 13
+    # \/ Badger stats to be randomized
     badger_attack = random.randint(1,21) + 3
     badger_bite = random.randint(1,7) + 1
     badger_claws = random.randint(1,5) + random.randint(1,5) + 1
+    # \/ Player stats that need to be randmized every time
+    if class_choice == 1:
+        attack = random.randint(1,21) + 3
+        damage = random.randint(1,7) + 2
+    elif class_choice == 2:
+        attack = random.randint(1,21) + 4
+        damage = random.randint(1,7) + 3
+    elif class_choice == 3:
+        attack = random.randint(1,21) + 3
+        damage = random.randint(1,7) + 2
+    elif class_choice == 4:
+        attack = random.randint(1,21) + 3
+        damage = random.randint(1,9) + 2
+    else:
+        print("Something went horribly wrong...")
     # If player goes first: 
     if player_initiative >= badger_initiative:
         # Have them select type of move choice via function
-        info = f"It is your turn!\nHere are your stats:\nhealth: {health}\nWeapon in Use: {weapon}\n"
+        info = f"\nIt is your turn!\nHere are the stats:\nYour Health: {health}\nWeapon in Use: {weapon}\nGiant Badger Health: {badger_health}\n\n"
         for char in info:
             print(char, end="", flush=True)
             time.sleep(delay)
@@ -107,7 +127,7 @@ while True:
             # player is super attacking. Check if roll is successful and do double damage to enemy
             if attack >= 16: # Higher because its a stronger move and should be harder to do
                 badger_health -= (damage*2)
-                health -= 5
+                health -= 3
                 print(f"You hit! You did {damage*2} damage to the Giant Badger!")
             else:
                 print("You did not hit! Your turn is over.")
@@ -118,7 +138,7 @@ while True:
         else:
             # player is dodging. Set dodge to true so it can be used when badger attacks. Make sure to reset it at the end of turn
             player_dodge = True
-            display = "You are ready to dodge when the Giant Badger tries to attack!\nBe warned, if the Giant Badger does not land the attack, you will not be able to dodge the next time."
+            display = "You are ready to dodge when the Giant Badger tries to attack!\nBe warned, if the Giant Badger does not land the attack, you will not be able to dodge the next time.\n\n"
             for char in display:
                 print(char, end="", flush=True)
                 time.sleep(delay)
@@ -152,7 +172,7 @@ while True:
 
     # If somehow both combatants ended at 0 health at the same time
     if health <= 0 and badger_health <= 0:
-        end = "You and the Giant Badger both died at the same time!"
+        end = "\nYou and the Giant Badger both died at the same time!"
         for char in end:
             print(char, end="", flush=True)
             time.sleep(delay)
@@ -160,7 +180,7 @@ while True:
     # If enemy health is less than or equal to 0
     elif badger_health <= 0 and health > 0:
         # end the game and display the player won
-        end = f"You defeated the Giant Badger!!!"
+        end = f"\nYou defeated the Giant Badger!!!\nCongradulations {name}!!!!\n"
         for char in end:
             print(char, end="", flush=True)
             time.sleep(delay)
@@ -168,7 +188,7 @@ while True:
     # If player health is less than or equal to 0
     elif health <= 0 and badger_health > 0:
         # end the game and tell the player they died and lost
-        end = "Oh no!! You were killed by the Giand Badger!! Game Over"
+        end = "\nOh no!! You were killed by the Giand Badger!! Game Over"
         for char in end:
             print(char, end="", flush=True)
             time.sleep(delay)

@@ -4,6 +4,9 @@ import random
 
 # I want each row/column to be 25 pixels
 # Set up grid, this is two lists. one for rows and other for columns
+pen = turtle.Turtle()
+pen.hideturtle()
+
 rows = [
     [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)]
 ]
@@ -45,7 +48,38 @@ def isSolvable(row_grid, col_grid):
     return False
 
 # For loop to draw the maze itself. For item in maze, then for border in item: draw. If border is true(1), then pendown and draw then penup for every item. False(0) dont draw
-true_maze = isSolvable(rows, columns)
-print(true_maze)
+# Set possition for drawing rows \/
+pen.penup()
+pen.setpos(-90, 90)
+pen.pendown()
 
-#turtle.done()
+for row in rows:
+    for section in row:
+        if section == 0:
+            pen.penup()
+            pen.forward(30)
+        else:
+            pen.pendown()
+            pen.forward(30)
+            pen.penup()
+
+# Set possition for drawing columns \/
+pen.penup()
+pen.right(90)
+pen.setpos(-90, 90)
+pen.pendown()
+
+for column in columns:
+    for wall in column:
+        if wall == 0:
+            pen.penup()
+            pen.forward(30)
+        else:
+            pen.pendown()
+            pen.forward(30)
+            pen.penup()
+
+# true_maze = isSolvable(rows, columns)
+# print(true_maze)
+
+turtle.done()

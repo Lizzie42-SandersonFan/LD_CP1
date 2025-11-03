@@ -1,35 +1,51 @@
 # LD 2nd Maze Generator
 import turtle
+import random
 
-# I need to draw my maze out for my own sanity's sake
-# I want each row/column to be 75 pixels
-# Start with setting up the maze grid as a list with lists inside for rows/columns
-maze = [["This is row one"], ["This is row two"], ["This is row three"], ["This is row four"], ["This is row five"], ["This is row six"]]
+# I want each row/column to be 25 pixels
+# Set up grid, this is two lists. one for rows and other for columns
+rows = [
+    [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)]
+]
+columns = [
+    [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)], [random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2), random.randint(0,2)]
+]
 
-# Make the turtle draw the boarder first
-# For loop to draw the maze itself. For item in maze, then for border in item: draw. If border is true, then pendown and draw then penup for every item
+# Randomly generate maze from lists
 
-border_turtle = turtle.Turtle()
-border_turtle.hideturtle() # DO THIS WHEN DRAWING
-border_turtle.penup()
-border_turtle.goto(-200, 200)
-border_turtle.pendown()
-# Drawing the maze border
-border_turtle.forward(200)
-border_turtle.penup()
-border_turtle.forward(75)
-border_turtle.pendown()
-border_turtle.forward(200)
-border_turtle.right(90)
-border_turtle.forward(450)
-border_turtle.right(90)
-border_turtle.forward(200)
-border_turtle.penup()
-border_turtle.forward(75)
-border_turtle.pendown()
-border_turtle.forward(200)
-border_turtle.right(90)
-border_turtle.forward(450)
-# /\ this is ugly, I know :(
+# Function to check if maze is solvable
+def isSolvable(row_grid, col_grid):
+    size = len(row_grid) - 1
+    visited = set()
+    stack = [(0,0)]
 
-turtle.done()
+    while stack:
+        x, y = stack.pop()
+
+        if x == size - 1 and y == size - 1:
+            return True
+        
+        if (x, y) in visited:
+            continue
+
+        visited.add((x, y))
+
+        if x < size - 1 and col_grid[y][x+1] == 0:
+            stack.append((x+1, y))
+
+        if y < size - 1 and row_grid[y+1][x] == 0:
+            stack.append((x, y+1))
+
+        if x > 0 and col_grid[y][x] == 0:
+            stack.append((x-1, y))
+
+        if y > 0 and row_grid[y][x] == 0:
+            stack.append((x, y-1))
+
+    return False
+
+# For loop to draw the maze itself. For item in maze, then for border in item: draw. If border is true(1), then pendown and draw then penup for every item. False(0) dont draw
+true_maze = isSolvable(rows, columns)
+print(true_maze)
+
+#turtle.done()

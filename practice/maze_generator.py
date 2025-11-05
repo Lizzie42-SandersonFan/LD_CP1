@@ -11,7 +11,7 @@ pen.hideturtle()
 def isSolvable(row_grid, col_grid):
     size = len(row_grid) - 1
     visited = set()
-    stack = [(0s,0)]
+    stack = [(0,0)]
 
     while stack:
         x, y = stack.pop()

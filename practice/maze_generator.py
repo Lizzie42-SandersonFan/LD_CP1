@@ -9,14 +9,15 @@ pen.hideturtle()
 
 # Function to check if maze is solvable
 def isSolvable(row_grid, col_grid):
-    size = len(row_grid) - 1
+    x_size = len(row_grid) - 1
+    y_size = len(col_grid) - 1
     visited = []
     stack = [(0,0)]
 
     while stack:
         x, y = stack.pop()
 
-        if x == size - 1 and y == size - 1:
+        if x == x_size - 1 and y == y_size - 1:
             return True
         
         if (x, y) in visited:
@@ -24,12 +25,14 @@ def isSolvable(row_grid, col_grid):
 
         visited.append((x, y))
         # If row below me is there
-        if x <= size - 1 and col_grid[y][x-1] == 0:
-            stack.append((x-1, y))
+        if x <= x_size - 1 and col_grid[x-1][y] == 0:
+            if x-1 >= 0:
+                stack.append((x-1, y))
 
         # If column to left is there
-        if y <= size - 1 and row_grid[x][y-1] == 0:
-            stack.append((x, y-1))
+        if y <= y_size - 1 and row_grid[x][y-1] == 0:
+            if y-1 >= 0:
+                stack.append((x, y-1))
 
         # If row above is there
         if x >= 0 and col_grid[x][y] == 0:
@@ -45,10 +48,10 @@ while True:
     # Set up grid, this is two lists. one for rows and other for columns
     # Randomly generate maze from lists
     rows = [
-        [0, 1, 1, 1, 1, 1], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [1, 1, 1, 1, 1, 0]
+        [0, 1, 1, 1, 1, 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 0, 0]
     ]
     columns = [
-        [1, 1, 1, 1, 1, 1], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1)], [1, 1, 1, 1, 1, 1]
+        [1, 1, 1, 1, 1, 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 1, 0]
     ]
     
     # Use function to check if the generated maze is solvable; if it is, show maze. If not, go back and re-randamize the maze

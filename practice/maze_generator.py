@@ -48,10 +48,10 @@ while True:
     # Set up grid, this is two lists. one for rows and other for columns
     # Randomly generate maze from lists
     rows = [
-        [0, 1, 1, 1, 1, 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 0, 0]
+        [0, 1, 1, 1, 1, 1, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 1, 0, 0]
     ]
     columns = [
-        [1, 1, 1, 1, 1, 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0], [random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 1, 0]
+        [1, 1, 1, 1, 1, 1, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [0, random.randint(0,1), random.randint(0,1), random.randint(0,1), random.randint(0,1), 0, 0], [1, 1, 1, 1, 1, 1, 0]
     ]
     
     # Use function to check if the generated maze is solvable; if it is, show maze. If not, go back and re-randamize the maze

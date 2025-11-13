@@ -9,6 +9,7 @@ menu = {
 }
 cookies_list = ["milk chocolate chip", "dirt cake", "raspberry lemonade", "s'mores", "chocolate cake batter", "lemon bar", "birthday cake", "snickerdoodle cupcake", "original pink sugar", "brownie sundae", "chocolate peanut butter pie", "cookie dough", "snickerdoodle"]
 drinks_list = ["root beer", "lemonade", "strawberry lemonade", "raspberry lemonade", "coca cola", "dr pepper", "fanta", "pepsi", "water"]
+cookies_ordered = []
 # Dictionary that is the item selected and its price
 # This dictionary will slowly be built up through if statements to see what the user ordered
 order = {
@@ -64,6 +65,7 @@ while True:
     if result == True:
         print(f"{cookie1} cookie added to your order!\n")
         order[cookie1] = 3.75
+        cookies_ordered.append(cookie1)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -76,6 +78,7 @@ while True:
     if result == True:
         print(f"{cookie2} cookie added to your order!\n")
         order[cookie2] = 3.75
+        cookies_ordered.append(cookie2)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -88,6 +91,7 @@ while True:
     if result == True:
         print(f"{cookie3} cookie added to your order!\n")
         order[cookie3] = 3.75
+        cookies_ordered.append(cookie3)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -100,6 +104,7 @@ while True:
     if result == True:
         print(f"{cookie4} cookie added to your order!\n")
         order[cookie4] = 3.75
+        cookies_ordered.append(cookie4)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -112,6 +117,7 @@ while True:
     if result == True:
         print(f"{cookie5} cookie added to your order!\n")
         order[cookie5] = 3.75
+        cookies_ordered.append(cookie5)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -124,6 +130,7 @@ while True:
     if result == True:
         print(f"{cookie6} cookie added to your order!\n")
         order[cookie6] = 3.75
+        cookies_ordered.append(cookie6)
         break
     else:
         print("Invalid input.\nEither we don't have that cookie or your speeling was wrong.\n")
@@ -131,11 +138,15 @@ while True:
 
 # Print out order and final price
 print("Here is your final order!")
+# print(drink)
 for item in order:
-    list = order.keys()
-    number = list.count(item)
+    #ordered = list(cookies_ordered.values())
+    number = cookies_ordered.count(item)
     if number > 1:
-        print(item[number])
+        print(f"{item} ({number})")
+    else:
+        print(item)
+    
 
 sub_total = order[drink] + order[cookie1] + order[cookie2] + order[cookie3] + order[cookie4] + order[cookie5] + order[cookie6]
 tax = ((sub_total*7)/100)

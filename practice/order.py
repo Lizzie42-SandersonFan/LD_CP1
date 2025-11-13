@@ -138,9 +138,7 @@ while True:
 
 # Print out order and final price
 print("Here is your final order!")
-# print(drink)
 for item in order:
-    #ordered = list(cookies_ordered.values())
     number = cookies_ordered.count(item)
     if number > 1:
         print(f"{item} ({number})")

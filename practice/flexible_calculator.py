@@ -3,33 +3,34 @@ import statistics
 
 # Build function for math
 def math(*nums):
-    total = 0
+    total = 1
     if opp_choice == "sum":
         # loop thru nums list and add them together
-        if isinstance(users_nums, list):
-            for num in users_nums:
+        if isinstance(nums[0], list):
+            for num in nums[0]:
                 total += num
-            return total
+            return total - 1
     elif opp_choice == "average":
         # loop thru list and find average
-        if isinstance(users_nums, list):
-            total = statistics.mean(users_nums)
+        if isinstance(nums[0], list):
+            total -= 1
+            total = statistics.mean(nums[0])
             return total
     elif opp_choice == "max":
         # loop thru list and find bigest num
-        if isinstance(users_nums, list):
-            total = max(users_nums)
+        if isinstance(nums[0], list):
+            total = max(nums[0])
             return total
     elif opp_choice == "min":
         # loop thru list and find smallest num
-        if isinstance(users_nums, list):
-            total = min(users_nums)
+        if isinstance(nums[0], list):
+            total = min(nums[0])
             return total
     elif opp_choice == "product":
         # loop thru list and multiply them all together
-        if isinstance(users_nums, list):
-            for num in users_nums:
-                total *= num
+        if isinstance(nums[0], list):
+            for num in nums[0]:
+                total *= num 
             return total
     else:
         # Something went wrong

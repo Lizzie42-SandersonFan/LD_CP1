@@ -12,14 +12,14 @@ num_list = []
 #define print_factoral(number, factored_number, num_list):
 # multiply all numbers in num_list and save as factored number
 
-def factorial(number, num_list):
+def factorial(number):
     num_list.append(number)
-    while number >= 1:
+    while number > 1:
         number -= 1
         num_list.append(number)
 
 
-def print_factorial(number, num_list):
+def print_factorial():
     factored_number = 1
     for num in num_list:
         factored_number *= num
@@ -33,18 +33,22 @@ def print_factorial(number, num_list):
 # display: Invalid input, please retry with a whole number
 # contiue
 while True:
-    num = int(input("Enter a whole, factorable number:\n"))
-    if num.isnumeric() == True:
-        factorial(num, num_list)
+    user_num = input("Enter a whole, factorable number:\n")
+    if user_num.isnumeric() == True:
+        num = int(user_num)
+        factorial(num)
         break
-    elif num.isdigit() == False:
+    else:
         print("Invalid input, please retry with a whole number")
         continue
 
-factored_num = print_factorial(num, num_list)
+factored_num = print_factorial()
+print(f"{num} factored is {factored_num}")
 
 # LD notes:
 # need to break in while loop
-# print funtion doesn't need factor_number paramiter
+# print funtion doesn't need factor_number parameter
+# factoral function doesn't need paramters
 # in factorial funtion, do not need to compare list, but the number, and also just do number and not all this factored_num thing
-# isdigit isn't working
+# input needs to be a string, then check if it is numeric then convert to int
+# line 17: cannot have >=, just >

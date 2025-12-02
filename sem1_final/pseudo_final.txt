@@ -1,0 +1,60 @@
+LD 2nd Pseudocode for sem 1 Final
+
+FUNCTIONS:
+startingRoom:
+    this is where the user starts. They find a basic sword on the ground and it is added to their moves dictionary
+
+roomOne:
+    this is one of two rooms from startingRoom. A corpse can be raided to add 5 to the users's base health.
+
+roomTwo:
+    this is the second room from starting room. A corpse can be raided to grant the user a healing potion to restore them to full health
+
+roomThree:
+    this is a room from room one. This is the good room. In God room: the user sees a giant flash of light, temporally blinding them while a figure decends from the light. God speaks: "Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely." God leaves, GOD_GIFT = True, this affects weapon's damage. Advancing will grand user health restored potion
+
+roomFour:
+    a room from room one. corpse to raid, grants 10 arrows
+
+roomFive:
+    room from room one and room two. corpse to raid: grants daggers (add to moves dict), heal potions (add to moves dict), potions to throw at the enemy (add to moves dict). advancing grants user a great sword
+
+roomSix:
+    a room from room two. has a chest with arrmor and connects to final boss and mini boss. advancing to final boss grands user bow and 50 arrows
+
+roomSeven:
+    a room from room two. has corpses that can grant arrows and other stuff.
+
+roomEight:
+    a room from room 3. has a corpse with a broadsword.
+
+roomNine:
+    room from room six. Mini boss room. call mini boss fight function. when mini boss defeated, user gets the GIFT_OF_FIRE(add to user moves dict) and this is a new attack that will do fire damage. looks like a wand thing
+
+roomTen:
+    room from rooms 3, 5, and 6. final boss room. call final boss fight function. boss has monologue moment, fight, result based on who died first
+
+exitRoom:
+    last room. after final boss is defeated, user is granted higher health (not going to be used, simply to stroke user's ego or smth).
+
+User attack(moves):
+    Show user what they can do and have them pick. this can be accessed from getting the user dict index for the moves
+    Determine what user picked and calculate subsiquent damage
+    return damage delt
+
+mini boss attack():
+    Have pick random number to determine attack
+    Determine what number picked and calculate subsiquent damage
+    return damage delt
+
+final boss attack():
+    Have pick random number to determine attack
+    Determine what number picked and calculate subsiquent damage
+    return damage delt
+
+miniBossFight()
+    LOOP for mini boss:
+        User goes first. Call user attack function
+        If statements to check if someone dead, break if true
+        mini boss's turn. Call its attack function
+        if statemets to check if someones dead, break if true

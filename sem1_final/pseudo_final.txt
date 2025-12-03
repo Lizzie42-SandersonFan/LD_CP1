@@ -1,35 +1,51 @@
 LD 2nd Pseudocode for sem 1 Final
 
 FUNCTIONS:
+pickRoomOf2():
+    ask user if they would like to go down the first hallway or the second hallway. return result
+
+pickRoomOf3():
+    ask user if they would like to go down the first hallway, the second hallway, or the third hallway. return result
+
 startingRoom:
     this is where the user starts. They find a basic sword on the ground and it is added to their moves dictionary
+    pickRoomOf2().
 
 roomOne:
-    this is one of two rooms from startingRoom. A corpse can be raided to add 5 to the users's base health.
+    this is one of two rooms from startingRoom. A corpse can be raided to add 5 to the users's base health(+5 to user_health).
+    pickRoomOf3().
 
 roomTwo:
     this is the second room from starting room. A corpse can be raided to grant the user a healing potion to restore them to full health
+    pickRoomOf3().
 
 roomThree:
-    this is a room from room one. This is the good room. In God room: the user sees a giant flash of light, temporally blinding them while a figure decends from the light. God speaks: "Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely." God leaves, GOD_GIFT = True, this affects weapon's damage. Advancing will grand user health restored potion
+    this is a room from room one. This is the god room. In God room: the user sees a giant flash of light, temporally blinding them while a figure decends from the light. God speaks: "Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely." God leaves, GOD_GIFT = True, this affects weapon's damage. Advancing to next room will grant user health restored potion
+    pickRoomOf2().
 
 roomFour:
     a room from room one. corpse to raid, grants 10 arrows
+    *in actual gameplay, ask the user if they want to move back*.
 
 roomFive:
-    room from room one and room two. corpse to raid: grants daggers (add to moves dict), heal potions (add to moves dict), potions to throw at the enemy (add to moves dict). advancing grants user a great sword
+    room from room one and room two. corpse to raid: grants daggers (add to moves dict), heal potions (add to variable), potions to throw at the enemy (add to variable). advancing to next room grants user a great sword(add to moves dict)
+    *in actual gameplay, ask the user if they want to advance or go back*.
 
 roomSix:
-    a room from room two. has a chest with arrmor and connects to final boss and mini boss. advancing to final boss grands user bow and 50 arrows
+    a room from room two. has a chest with armor(update user_armor to 20) and connects to final boss and mini boss. advancing to final boss grands user bow(add to moves dict) and 50 arrows (add 50 to arrows)
+    pickRoomOf2().
 
 roomSeven:
-    a room from room two. has corpses that can grant arrows and other stuff.
+    a room from room two. has corpses that can grant arrows and other: see room five list.
+    *in actual gameplay, ask the user if they want to move back*.
 
 roomEight:
     a room from room 3. has a corpse with a broadsword.
+    *in actual gameplay, ask the user if they want to move back*.
 
 roomNine:
     room from room six. Mini boss room. call mini boss fight function. when mini boss defeated, user gets the GIFT_OF_FIRE(add to user moves dict) and this is a new attack that will do fire damage. looks like a wand thing
+    *in actual gameplay, ask the user if they want to move back*.
 
 roomTen:
     room from rooms 3, 5, and 6. final boss room. call final boss fight function. boss has monologue moment, fight, result based on who died first
@@ -58,3 +74,53 @@ miniBossFight()
         If statements to check if someone dead, break if true
         mini boss's turn. Call its attack function
         if statemets to check if someones dead, break if true
+
+finalBossFight()
+    LOOP for final boss:
+        User goes first. Call user attack function
+        If statements to check if someone dead, break if true
+        final boss's turn. Call its attack function
+        if statemets to check if someones dead, break if true
+
+VARIABLES
+user_health = 30
+user_armor = 15
+full_health_potions = 0
+GOD_GIFT = False
+GIFT_OF_FIRE = False
+arrows = 0
+moves = {
+    sword : 10 damage
+    *any other weapons the user picks up*
+    *if the user decides to use the bow, make sure to subtract 1 from arrows*
+}
+opening = "long backstory giving context"
+moved_back = "this is what will be displayed if the user moves back to a previous room"
+to_room2 = "this is what will be shown if user goes to room two"
+to_room3 = "this is what will be shown if user goes to room three"
+to_room4 = "this is what will be shown if user goes to room four"
+to_room5 = "this is what will be shown if user goes to room five"
+to_room6 = "this is what will be shown if user goes to room six"
+to_room7 = "this is what will be shown if user goes to room seven"
+to_room8 = "this is what will be shown if user goes to room eight"
+to_room9 = "this is what will be shown if user goes to room nine"
+to_room10 = "this is what will be shown if user goes to room ten"
+exit_room = "this is what will be shown if the user goes to the exit room"
+closing = "this is what will be shown if user wins and laves the cave system"
+
+RUNNING THE GAME
+while loop to run the game:
+    type print the opening
+    call startingRoom()
+    use result returned from funtion to determine which room is called next
+    if pick room one:
+        type print to_room1
+        call roomOne()
+        use result returned from funtion to determine which room is called next
+        if user goes to room 3:
+            type print to_room3
+            call roomthree()
+        
+    else:
+        type print to_room2
+        call roomTwo()

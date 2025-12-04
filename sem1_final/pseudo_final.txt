@@ -1,56 +1,96 @@
 LD 2nd Pseudocode for sem 1 Final
+IMPORT TIME
 
 FUNCTIONS:
-pickRoomOf2():
-    ask user if they would like to go down the first hallway or the second hallway. return result
-
-pickRoomOf3():
-    ask user if they would like to go down the first hallway, the second hallway, or the third hallway. return result
+typePrint(string):
+    for char in string:
+        print(char, end="", flush=True)
+        time.sleep(delay)
 
 startingRoom:
-    this is where the user starts. They find a basic sword on the ground and it is added to their moves dictionary
-    pickRoomOf2().
+    this is where the user starts. They find a basic sword on the ground and it is added to their moves dictionary.
+    while loop:
+        Then ask user if they would like to move to the first hallway or second hallway
+        check if valid
+        call function correcsponding to room choice
 
 roomOne:
+    display:to_room1 = "this is what will be shown if user goes to room one"
     this is one of two rooms from startingRoom. A corpse can be raided to add 5 to the users's base health(+5 to user_health).
-    pickRoomOf3().
-
+    while loop:
+        ask user if they would like to move down one of three hallways
+        check if valid
+        call function correcsponding to room choice
 roomTwo:
+    display: to_room2 = "this is what will be shown if user goes to room two"
     this is the second room from starting room. A corpse can be raided to grant the user a healing potion to restore them to full health
-    pickRoomOf3().
+    while loop:
+        ask user if they would like to move down one of three hallways
+        check if valid
+        call function correcsponding to room choice
 
 roomThree:
+    display: to_room3 = "this is what will be shown if user goes to room three"
     this is a room from room one. This is the god room. In God room: the user sees a giant flash of light, temporally blinding them while a figure decends from the light. God speaks: "Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely." God leaves, GOD_GIFT = True, this affects weapon's damage. Advancing to next room will grant user health restored potion
-    pickRoomOf2().
+    while loop:
+        ask user if they would like to move down one of two hallways
+        check if valid
+        call function correcsponding to room choice
 
 roomFour:
+    display: to_room4 = "this is what will be shown if user goes to room four"
     a room from room one. corpse to raid, grants 10 arrows
-    *in actual gameplay, ask the user if they want to move back*.
+    While loop:
+        ask if user would like to move back to previous room
+        check if valid
+        call function correcsponding to room choice
 
 roomFive:
+    display: to_room5 = "this is what will be shown if user goes to room five"
     room from room one and room two. corpse to raid: grants daggers (add to moves dict), heal potions (add to variable), potions to throw at the enemy (add to variable). advancing to next room grants user a great sword(add to moves dict)
-    *in actual gameplay, ask the user if they want to advance or go back*.
+    While loop:
+        ask if user would like to move back to previous room
+        check if valid
+        call function correcsponding to room choice
 
 roomSix:
+    display: to_room6 = "this is what will be shown if user goes to room six"
     a room from room two. has a chest with armor(update user_armor to 20) and connects to final boss and mini boss. advancing to final boss grands user bow(add to moves dict) and 50 arrows (add 50 to arrows)
-    pickRoomOf2().
+    while loop:
+        ask user if they would like to move down one of two hallways
+        check if valid
+        call function correcsponding to room choice
 
 roomSeven:
+    display: to_room7 = "this is what will be shown if user goes to room seven"
     a room from room two. has corpses that can grant arrows and other: see room five list.
-    *in actual gameplay, ask the user if they want to move back*.
+    While loop:
+        ask if user would like to move back to previous room
+        check if valid
+        call function correcsponding to room choice
 
 roomEight:
+    display: to_room8 = "this is what will be shown if user goes to room eight"
     a room from room 3. has a corpse with a broadsword.
-    *in actual gameplay, ask the user if they want to move back*.
+    While loop:
+        ask if user would like to move back to previous room
+        check if valid
+        call function correcsponding to room choice
 
 roomNine:
+    display: to_room9 = "this is what will be shown if user goes to room nine"
     room from room six. Mini boss room. call mini boss fight function. when mini boss defeated, user gets the GIFT_OF_FIRE(add to user moves dict) and this is a new attack that will do fire damage. looks like a wand thing
-    *in actual gameplay, ask the user if they want to move back*.
+    While loop:
+        ask if user would like to move back to previous room
+        check if valid
+        call function correcsponding to room choice
 
 roomTen:
-    room from rooms 3, 5, and 6. final boss room. call final boss fight function. boss has monologue moment, fight, result based on who died first
+    display: to_room10 = "this is what will be shown if user goes to room ten"
+    room from rooms 3, 5, and 6. final boss room. call final boss fight function
 
 exitRoom:
+    display: exit_room = "this is what will be shown if the user goes to the exit room"
     last room. after final boss is defeated, user is granted higher health (not going to be used, simply to stroke user's ego or smth).
 
 User attack(moves):
@@ -76,13 +116,17 @@ miniBossFight()
         if statemets to check if someones dead, break if true
 
 finalBossFight()
+    Display monologue moment
     LOOP for final boss:
         User goes first. Call user attack function
         If statements to check if someone dead, break if true
         final boss's turn. Call its attack function
         if statemets to check if someones dead, break if true
+    based on who died, display result
+    If user wins, call exit room
 
 VARIABLES
+dealy = 0.06 <- for typing print magic, connected to a function
 user_health = 30
 user_armor = 15
 full_health_potions = 0
@@ -95,32 +139,13 @@ moves = {
     *if the user decides to use the bow, make sure to subtract 1 from arrows*
 }
 opening = "long backstory giving context"
-moved_back = "this is what will be displayed if the user moves back to a previous room"
-to_room2 = "this is what will be shown if user goes to room two"
-to_room3 = "this is what will be shown if user goes to room three"
-to_room4 = "this is what will be shown if user goes to room four"
-to_room5 = "this is what will be shown if user goes to room five"
-to_room6 = "this is what will be shown if user goes to room six"
-to_room7 = "this is what will be shown if user goes to room seven"
-to_room8 = "this is what will be shown if user goes to room eight"
-to_room9 = "this is what will be shown if user goes to room nine"
-to_room10 = "this is what will be shown if user goes to room ten"
-exit_room = "this is what will be shown if the user goes to the exit room"
 closing = "this is what will be shown if user wins and laves the cave system"
+*there are more variables, they are jsut local variables for each function, but there are more!!*
 
 RUNNING THE GAME
 while loop to run the game:
     type print the opening
     call startingRoom()
-    use result returned from funtion to determine which room is called next
-    if pick room one:
-        type print to_room1
-        call roomOne()
-        use result returned from funtion to determine which room is called next
-        if user goes to room 3:
-            type print to_room3
-            call roomthree()
-        
-    else:
-        type print to_room2
-        call roomTwo()
+    /\ after calling that, the entire game should run on its own. only way to find out is to write code and test tho
+    After exitRoom() is all done, display closing via typing thing
+    ask user if they want to play again, if they do: continue

@@ -1,71 +1,145 @@
-# LD 2nd Final for Class
+# LD 2nd Final Game
+import time
+delay = 0.06
 
-# FUNCTIONS
-# User attack(moves){
-    # Show user what they can do and have them pick. this can be accessed from getting the user dict index for the moves
-    # Determine what user picked and calculate subsiquent damage
-    # return damage delt
-# }
+def typePrint(strng):
+    for char in strng:
+        print(char, end="", flush=True)
+        time.sleep(delay)
 
-# mini boss attack(){
-    # Have pick random number to determine attack
-    # Determine what number picked and calculate subsiquent damage
-    # return damage delt
-# }
+def startRoom():
+    # When most code written, find a way to see of the sword is picked up; if it is, change description
+    description1 = "You look around the room. All you see is a sword on the ground. Would you like to pick it up?\n"
+    typePrint(description1)
+    while True:
+        pick_up = input("Pick up sword:\nYes\nNo").upper()
+        if pick_up == "YES":
+            pass # add sword to dictionary when created
+            break
+        elif pick_up == "NO":
+            pass # have user move one without sword
+            break
+        else:
+            print("Invalid input, try again")
+            continue
+    description2 = "Looking further down the room, you see two hallways forward. Which one would you like to go down?\n"
+    typePrint(description2)
+    while True:
+        hallway = ("Which hallway:\n1\n2").upper()
+        if hallway == "1":
+            roomOne()
+        elif hallway == "2":
+            roomTwo()
+        else:
+            print("Invalid input, try again")
+            continue
 
-# final boss attack(){
-    # Have pick random number to determine attack
-    # Determine what number picked and calculate subsiquent damage
-    # return damage delt
-# }
+def roomOne():
+    room1 = "You enter the first hallway and find yourself in a room with a corspe.\n"
+    typePrint(room1)
+    while True:
+        raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
+        if raid == "YES":
+            found = "You find a small vile of liquid labled 'Health Bonus' and you drink it. You have gained 5 health.\n"
+            typePrint(found)
+            # add 5 to user health when created
+            break
+        elif raid == "NO":
+            nope = "You ignore the corpse and continue looking around the room.\n"
+            typePrint(nope)
+            break
+        else:
+            print("Invalid input, try again")
+            continue
+    description1 = "After looking around the room you notice three hallways forward."
+    typePrint(description1)
+    while True:
+        hallway = ("Which hallway:\n1\n2\n3\nGo back a room(type 'Go back' if you want to do this)").upper()
+        if hallway == "1":
+            roomThree()
+        elif hallway == "2":
+            pass # call room 4 func
+        elif hallway == "3":
+            pass # call room 5 func
+        elif hallway == "GO BACK":
+            startRoom()
+        else:
+            print("Invalid input, try again")
+            continue
 
-# VARIABLES
-# user health = 30
-# user moves {
-    # sword : damge
-    # Bow if aquired : damage
-    # GIFT_OF_FIRE if aquired : damage
-    # dodge : True/False
-    # heal : reset health
-    # splash potions
-#}
+def roomTwo():
+    room2 = "You enter the first hallway and find yourself in a room with a corspe.\n"
+    typePrint(room2)
+    while True:
+        raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
+        if raid == "YES":
+            found = "You find a potion labled 'Health Restore'. You pocket the healing potion\n"
+            typePrint(found)
+            # add healing potion to user invintory
+            break
+        elif raid == "NO":
+            nope = "You ignore the corpse and continue looking around the room.\n"
+            typePrint(nope)
+            break
+        else:
+            print("Invalid input, try again")
+            continue
+    description1 = "After looking around the room you notice three hallways forward."
+    typePrint(description1)
+    while True:
+        hallway = ("Which hallway:\n1\n2\n3\nGo back a room(type 'Go back' if you want to do this)").upper()
+        if hallway == "1":
+            pass # call room 5 func
+        elif hallway == "2":
+            pass # call room 6 func
+        elif hallway == "3":
+            pass # call room 7 func
+        elif hallway == "GO BACK":
+            startRoom()
+        else:
+            print("Invalid input, try again")
+            continue
 
-# the corpses and if they have been raided
-# BACKSTORY "lots of words"
-# USER_ROOM_CHOICE
-# FINAL_BOSS_MONOLOGUE "lots of words"
-# ENDING "lots of words that can change based on result of final boss fight"
+def roomThree():
+    room3 = "You enter the first hallway and find yourself in an empty room.\nSuddenly, you see a giant flash of light, temporally blinding you while a figure decends from the light.\nIt is God, and he speeaks:\n'Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely.'\nYou feel a wave of power wash over you and you fell your attack power increase.\n" # Set GOD_GIFT to true so that it increases any weapons power
+    typePrint(room3)
+    description1 = "After God leaves, you notice two hallways forward."
+    typePrint(description1)
+    while True:
+        hallway = ("Which hallway:\n1\n2\nGo back a room(type 'Go back' if you want to do this)").upper()
+        if hallway == "1":
+            pass # call room 8 func
+        elif hallway == "2":
+            pass # call room 10 func
+        elif hallway == "GO BACK":
+            roomOne()
+        else:
+            print("Invalid input, try again")
+            continue
 
-# STORY
-# give user BACKSTORY: They fell into a deep cave system when travaling with their family. They cannot go back the way they came, so they have to navigate the caves.
-# print BACKSTORY to make it look like its typing
-
-# there are two room the user could go into. Both rooms will have a corpse in them for the user to raid.
-
-# room one will give the user a health bonus of plus 5 to default health
-# room two will give the user a healing potion that will restore the user to full health
-
-# From room one: there are three rooms. room one is God and they will grand a plus 7 attack damage for all weapons. This can use GOD_GIFT (add to user moves dict) to determine if a weapone gets an upgrade and this room can lead to another corpse room or to the final boss where on the way, the user is given another heal potion. Room two is more corpses to raid, they can grant daggers (add to moves dict), heal potions (add to moves dict), potions to throw at the enemy (add to moves dict), other stuff. Room three will lead to a room with more bodies and this room will lead to the final boss and grant a weapon (add to moves dict).
-# In God room: the user sees a giant flash of light, temporally blinding them while a figure decends from the light. God speaks: "Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely." God leaves, GOD_GIFT = True, this affects weapon's damage, now user can go back to previous room or advance to final boss
-
-# From room two: the first choice will lead to the same room as choice 3 in room one. Choice two will lead to probably a chest will OP arrmor and this room connects to mini boss and final boss. Choice three will lead to another room with corpses.
-
-# In the mini boss room: user will fight a dragon with 50 health. When defeated, the user will recive the GIFT_OF_FIRE(add to user moves dict) and this is a new attack that will do fire damage
-# LOOP for mini boss{
-    # User goes first. Call user attack function
-    # If statements to check if someone dead, break if true
-    # mini boss's turn. Call its attack function
-    # if statemets to check if someones dead, break if true
-#}
-
-# In Final Boss room: Big Spider has monologue "ha..ha..ha You have fallen into my trap like so many have before you. *big spider decends from celing* Dozens have come before and all have failed, what makes you think you can defeate me? *user squares up* Pitiful. I gues I get to add you to my calorie count!" Combat begins.
-# LOOP for final boss{
-    # User goes first. Call user attack function
-    # If statements to check if someone dead, break if true
-    # Spider's turn. Call its attack function
-    # if statemets to check if someones dead, break if true
-#}
-
-# if user died: ENDING = "HAHAHAHAHAHA I beat you! I knew I would *user dies*" Ask if user wants to play again
-# if user won: ENDING = "NOOOOOOOOOOOOOOOOOOOO How could you beat me?!?! I am the most powerful being in creation! HOW?!?!?" user is now ganted higher health (not going to be used, simply to stroke user's ego or smth). They get to leave and thye find themselves back above ground and they see a village off in the distance. thye go there and find their family talking with locals trying to get help in finding you. You call out, tell them what happened and continue on your adventure with your family. Ask user if they would like to play again
-# print ENDING to make it look like it's typing
+def roomFour():
+    room4 = "You enter the first hallway and find yourself in a room with a corspe.\n"
+    typePrint(room4)
+    while True:
+        raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
+        if raid == "YES":
+            found = "You find 10 arrows. Sweet!\n"
+            typePrint(found)
+            # add 100 arrows to arrow count
+            break
+        elif raid == "NO":
+            nope = "You ignore the corpse and continue looking around the room.\n"
+            typePrint(nope)
+            break
+        else:
+            print("Invalid input, try again")
+            continue
+    description1 = "After looking around the room you notice no hallways forward."
+    typePrint(description1)
+    while True:
+        hallway = ("Would you like to go back a room:\nYes").upper()
+        if hallway == "YES":
+            roomOne()
+        else:
+            print("Invalid input, try again")
+            continue

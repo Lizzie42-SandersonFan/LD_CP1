@@ -273,6 +273,7 @@ def roomTen():
     typePrint(room10)
     time.sleep(1)
     monologue = "'MWAHAHAHAHAHAHA!\nWhat have we got here? Is it someone who dares chalenge me?\nI'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n"
+    typePrint(monologue)
     while True:
         pass
         # call user attack

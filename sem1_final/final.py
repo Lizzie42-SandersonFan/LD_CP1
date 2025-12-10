@@ -8,20 +8,24 @@ def typePrint(strng):
         time.sleep(delay)
 
 def startRoom():
-    # When most code written, find a way to see of the sword is picked up; if it is, change description
-    description1 = "You look around the room. All you see is a sword on the ground. Would you like to pick it up?\n"
-    typePrint(description1)
-    while True:
-        pick_up = input("Pick up sword:\nYes\nNo").upper()
-        if pick_up == "YES":
-            pass # add sword to dictionary when created
-            break
-        elif pick_up == "NO":
-            pass # have user move one without sword
-            break
+    for key in moves.keys():
+        if key == "sword":
+            description1 = "You look around the room. All you see is a sword on the ground. Would you like to pick it up?\n"
+            typePrint(description1)
+            while True:
+                pick_up = input("Pick up sword:\nYes\nNo").upper()
+                if pick_up == "YES":
+                    moves["sword"] = 10
+                    break
+                elif pick_up == "NO":
+                    # user does not have sword
+                    break
+                else:
+                    print("Invalid input, try again")
+                    continue
         else:
-            print("Invalid input, try again")
-            continue
+            description1 = "You have already picked up the sword on the ground.\n"
+            typePrint(description1)
     description2 = "Looking further down the room, you see two hallways forward. Which one would you like to go down?\n"
     typePrint(description2)
     while True:
@@ -35,15 +39,22 @@ def startRoom():
             continue
 
 def roomOne():
+    # this has corpse one
     room1 = "You enter the first hallway and find yourself in a room with a corspe.\n"
     typePrint(room1)
     while True:
         raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find a small vile of liquid labled 'Health Bonus' and you drink it. You have gained 5 health.\n"
-            typePrint(found)
-            # add 5 to user health when created
-            break
+            if corpse1_raided == False:
+                found = "You find a small vile of liquid labled 'Health Bonus' and you drink it. You have gained 5 health.\n"
+                typePrint(found)
+                user_health += 5
+                corpse1_raided = True
+                break
+            else:
+                found = "Seems you have already raided this corpse.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpse and continue looking around the room.\n"
             typePrint(nope)
@@ -58,9 +69,9 @@ def roomOne():
         if hallway == "1":
             roomThree()
         elif hallway == "2":
-            pass # call room 4 func
+            roomFour()
         elif hallway == "3":
-            pass # call room 5 func
+            roomFive()
         elif hallway == "GO BACK":
             startRoom()
         else:
@@ -68,15 +79,22 @@ def roomOne():
             continue
 
 def roomTwo():
+    # this has corpse two
     room2 = "You enter the first hallway and find yourself in a room with a corspe.\n"
     typePrint(room2)
     while True:
         raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find a potion labled 'Health Restore'. You pocket the healing potion\n"
-            typePrint(found)
-            # add healing potion to user invintory
-            break
+            if corpse2_raided == False:
+                found = "You find a potion labled 'Health Restore'. You pocket the healing potion\n"
+                typePrint(found)
+                full_health_potions += 1
+                corpse2_raided = True
+                break
+            else:
+                found = "Seems you have already raided this corpse.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpse and continue looking around the room.\n"
             typePrint(nope)
@@ -89,11 +107,11 @@ def roomTwo():
     while True:
         hallway = ("Which hallway:\n1\n2\n3\nGo back a room(type 'Go back' if you want to do this)").upper()
         if hallway == "1":
-            pass # call room 5 func
+            roomFive()
         elif hallway == "2":
-            pass # call room 6 func
+            roomSix()
         elif hallway == "3":
-            pass # call room 7 func
+            roomSeven()
         elif hallway == "GO BACK":
             startRoom()
         else:
@@ -101,17 +119,21 @@ def roomTwo():
             continue
 
 def roomThree():
-    # have a way to check if GOD_GIFT is true, if it is then change enter room text
-    room3 = "You enter the first hallway and find yourself in an empty room.\nSuddenly, you see a giant flash of light, temporally blinding you while a figure decends from the light.\nIt is God, and he speeaks:\n'Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely.'\nYou feel a wave of power wash over you and you fell your attack power increase.\n" # Set GOD_GIFT to true so that it increases any weapons power
-    typePrint(room3)
-    description1 = "After God leaves, you notice two hallways forward."
+    if god_gift == False:
+        room3 = "You enter the first hallway and find yourself in an empty room.\nSuddenly, you see a giant flash of light, temporally blinding you while a figure decends from the light.\nIt is God, and he speeaks:\n'Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely.'\nYou feel a wave of power wash over you and you fell your attack power increase.\nGod leaves.\n" 
+        god_gift = True
+        typePrint(room3)
+    else:
+        room3 = "God has already given you your bonus. Move to a new room.\n"
+        typePrint(room3)
+    description1 = "You notice two hallways forward."
     typePrint(description1)
     while True:
         hallway = ("Which hallway:\n1\n2\nGo back a room(type 'Go back' if you want to do this)").upper()
         if hallway == "1":
-            pass # call room 8 func
+            roomEight()
         elif hallway == "2":
-            pass # call room 10 func
+            roomTen()
         elif hallway == "GO BACK":
             roomOne()
         else:
@@ -119,15 +141,22 @@ def roomThree():
             continue
 
 def roomFour():
+    # this has corpse three
     room4 = "You enter the first hallway and find yourself in a room with a corspe.\n"
     typePrint(room4)
     while True:
         raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find 10 arrows. Sweet!\n"
-            typePrint(found)
-            # add 10 arrows to arrow count
-            break
+            if corpse3_raided == True:
+                found = "You find 10 arrows. Sweet!\n"
+                typePrint(found)
+                arrows += 10
+                corpse3_raided = True
+                break
+            else:
+                found = "Seems you have already raided this corpse.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpse and continue looking around the room.\n"
             typePrint(nope)
@@ -146,15 +175,26 @@ def roomFour():
             continue
 
 def roomFive():
+    # this has corpses four, five, and six
     room2 = "You enter the hallway and find yourself in a room with three corspes.\n"
     typePrint(room2)
     while True:
         raid = input("Would you like to raid the corpses:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find three items on the corpses:\n- A set of daggers\n- A full heal potion\n- A splash potion of fire (deals 40 damge)\n"
-            typePrint(found)
-            # add healing potion to user invintory, daggers to attack dict, and splach potion to attacks dict
-            break
+            if corpse4_raided == False and corpse5_raided == False and corpse6_raided == False:
+                found = "You find three items on the corpses:\n- A set of daggers\n- A full heal potion\n- A splash potion of fire (deals 40 damge)\n"
+                typePrint(found)
+                full_health_potions += 1
+                moves["daggers"] = 12
+                splash_potions += 1
+                corpse4_raided = True
+                corpse5_raided = True
+                corpse6_raided = True
+                break
+            else:
+                found = "Seems you have already raided these corpses.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpses and continue looking around the room.\n"
             typePrint(nope)
@@ -169,48 +209,68 @@ def roomFive():
         if hallway == "YES":
             pass # call room 10 func
         elif hallway == "GO BACK":
-            startRoom()
+            while True:
+                room = input("Which room would you like to go back to:\nOne\nTwo").upper()
+                if room == "ONE":
+                    roomOne()
+                elif room == "TWO":
+                    roomTwo()
+                else:
+                    print("Invalid input. Try again")
+                    continue
         else:
             print("Invalid input, try again")
             continue
 
 def roomSix():
     # When most code written, find a way to see if the chest is opened. if it is, change discription
-    description1 = "In this room, you see a chest.\n"
-    typePrint(description1)
-    while True:
-        pick_up = input("Would you like to open the chest:\nYes\nNo").upper()
-        if pick_up == "YES":
-            pass # add sword to dictionary when created
-            break
-        elif pick_up == "NO":
-            pass # have user move one without sword
-            break
-        else:
-            print("Invalid input, try again")
-            continue
+    if chest_opened == False:
+        description1 = "In this room, you see a chest.\n"
+        typePrint(description1)
+        while True:
+            pick_up = input("Would you like to open the chest:\nYes\nNo").upper()
+            if pick_up == "YES":
+                find = "You find a set of arromor! Your arromor is increased.\n"
+                typePrint(find)
+                user_armor += 8
+                break
+            elif pick_up == "NO":
+                break
+            else:
+                print("Invalid input, try again")
+                continue
+    else:
+        nope = "You have already opened the chest!\n"
+        typePrint(nope)
     description2 = "Looking further down the room, you see two hallways forward. Which one would you like to go down?\n"
     typePrint(description2)
     while True:
         hallway = ("Which hallway:\n1\n2").upper()
         if hallway == "1":
-            pass # call room 10 func
+            roomTen()
         elif hallway == "2":
-            pass #call room 9 func
+            roomNine()
         else:
             print("Invalid input, try again")
             continue
 
 def roomSeven():
+    # this has corpses seven and eight
     room7 = "You enter the first hallway and find yourself in a room with two corspes.\n"
     typePrint(room7)
     while True:
         raid = input("Would you like to raid the corpses:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find 10 arrows and a full heal potion. Sweet!\n"
-            typePrint(found)
-            # add 100 arrows to arrow count
-            break
+            if corpse7_raided == False and corpse8_raided == False:
+                found = "You find 10 arrows and a full heal potion. Sweet!\n"
+                typePrint(found)
+                arrows += 10
+                full_health_potions += 1
+                break
+            else:
+                found = "Seems you have already raided these corpses.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpses and continue looking around the room.\n"
             typePrint(nope)
@@ -229,15 +289,21 @@ def roomSeven():
             continue
 
 def roomEight():
+    # this has corpse nine
     room8 = "You enter the first hallway and find yourself in a room with a corspe.\n"
     typePrint(room8)
     while True:
         raid = input("Would you like to raid the corpse:\nYes\nNo").upper()
         if raid == "YES":
-            found = "You find a broad sword. Nifty!\n"
-            typePrint(found)
-            # add broadsword to attack dict
-            break
+            if corpse9_raided == False:
+                found = "You find a broad sword. Nifty!\n"
+                typePrint(found)
+                moves["broadsword"] = 20
+                break
+            else:
+                found = "Seems you have already raided this corpse.\n"
+                typePrint(found)
+                break
         elif raid == "NO":
             nope = "You ignore the corpse and continue looking around the room.\n"
             typePrint(nope)
@@ -256,6 +322,7 @@ def roomEight():
             continue
 
 def roomNine():
+    # this will use if mini_boss_dead
     room9 = "You enter the hallway and find yourself in a room with ... a dragon!\nInitiating combat\n"
     typePrint(room9)
     while True:
@@ -265,7 +332,7 @@ def roomNine():
         # call mini boss atack
         # check if someone dead
     # if someone dead, check who. 
-    # if mini boss dead, have user be given GIFT_OF_FIRE which is a move they can preform. Have user advance back to roomSix()
+    # if mini boss dead, have user be given GIFT_OF_FIRE which is a move they can preform and make mini_boss_dead true. Have user advance back to roomSix()
     # if player dead, call playerDead func
 
 def roomTen():
@@ -290,16 +357,32 @@ def exitRoom():
 
 # user attack
 
-#mini boss attack
+# mini boss attack
 
 # final boss attack
+
+# player died func
 
 user_health = 30
 user_armor = 15
 full_health_potions = 0
-God_gift = False
-Gift_of_fire = False
+splash_potions = 0
+god_gift = False
+gift_of_fire = False
 arrows = 0
 moves = {
     
 }
+corpse1_raided = False
+corpse2_raided = False
+corpse3_raided = False
+corpse4_raided = False
+corpse5_raided = False
+corpse6_raided = False
+corpse7_raided = False
+corpse8_raided = False
+corpse9_raided = False
+chest_opened = False
+mini_boss_dead = False
+
+# Begin actual game

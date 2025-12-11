@@ -4,7 +4,6 @@ import threading
 import random
 import time
 delay = 0.06
-delay = 0.03 # for debugging
 
 def flashingText1(stop_event):
     sys.stdout.write("\033[?25l")  # Hide the cursor
@@ -305,7 +304,7 @@ def roomSix():
         hallway = input("Which hallway:\n1\n2\nGo back a room(type 'Go back' if you want to do this)\n").upper().strip()
         if hallway == "1":
             move = "On your way, you find a bow and 30 arrows. Handy!\n"
-            moves["bow"] = 11
+            moves["bow"] = 6
             arrows += 30
             typePrint(move)
             roomTen()
@@ -447,7 +446,7 @@ def roomTen():
     room10 = "\nYou enter the hallway and find yourself in a room filled with spider webs. Something laughs above you...\n"
     typePrint(room10)
     time.sleep(1)
-    monologue = "'MWAHAHAHAHAHAHA!\nWhat have we got here? Is it someone who dares chalenge me?\nI'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\nInitiating combat\n"
+    monologue = "'MWAHAHAHAHAHAHA!\nWhat have we got here?'\n'Is it someone who dares chalenge me?'\n'I'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n\nInitiating combat\n"
     typePrint(monologue)
     while True:
         user_damage = userAttack()
@@ -478,17 +477,18 @@ def exitRoom():
 
 def userAttack():
     global moves
+    global arrows
     global full_health_potions
     global user_health
     global user_full_health
     global splash_potions
     print("\nIt is your turn!")
-    for key in moves.keys():
-        print(f"'{key}'")
-    print("You can also 'Heal' and throw a 'Splash potion'")
-    move = input("What would you like to do? (Type the name of the move):\n").upper().strip()
     # potential moves: sword, broadsword, heal, splash potion, daggers, bow, spear, fireball
     while True:
+        for key in moves.keys():
+            print(f"'{key}'")
+        print("You can also 'Heal' and throw a 'Splash potion'")
+        move = input("What would you like to do? (Type the name of the move):\n").upper().strip()
         if move == "SWORD":
             dmg = moves["sword"]
             return dmg
@@ -499,8 +499,13 @@ def userAttack():
             dmg = moves["daggers"]
             return dmg
         elif move == "BOW":
-            dmg = moves["bow"]
-            return dmg
+            if arrows >= 1:
+                dmg = moves["bow"]
+                arrows -= 1
+                return dmg
+            else:
+                print("You are out of arrows! Pick a different move")
+                continue
         elif move == "SPEAR":
             dmg = moves["spear"]
             return dmg
@@ -508,8 +513,9 @@ def userAttack():
             dmg = moves["fireball"]
             return dmg
         elif move == "HEAL":
-            if full_health_potions >= 1 and user_health >= 1:
+            if full_health_potions >= 1:
                 user_health = user_full_health
+                full_health_potions -= 1
                 break
             else:
                 print("You don't have any heal potions to use.\nPlease pick a different move.")
@@ -517,6 +523,7 @@ def userAttack():
         elif move == "SPLASH POTION":
             if splash_potions >= 1:
                 dmg = 20
+                splash_potions -= 1
                 return dmg
             else:
                 print("You don't have any splash potions to use.\nPlease pick a different move.")
@@ -630,8 +637,8 @@ corpse9_raided = False
 chest_opened = False
 mini_boss_dead = False
 
-mini_boss_health = 20
-final_boss_health = 45
+mini_boss_health = 30
+final_boss_health = 70
 
 # Begin actual game
 while True:

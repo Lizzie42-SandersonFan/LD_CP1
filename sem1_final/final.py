@@ -285,9 +285,9 @@ def roomSix():
         while True:
             pick_up = input("Would you like to open the chest:\nYes\nNo\n").upper().strip()
             if pick_up == "YES":
-                find = "You find a set of aromor! Your aromor is increased.\n"
+                find = "You find a set of armor! Your armor is increased.\n"
                 typePrint(find)
-                user_armor += 8
+                user_armor += 4
                 break
             elif pick_up == "NO":
                 break
@@ -298,7 +298,6 @@ def roomSix():
         nope = "\nYou walk into the room and the chest that you have already opened.\nMove to a new room.\n"
         typePrint(nope)
     description2 = "Looking further down the room, you see two hallways forward. Which one would you like to go down?\n"
-    # allow user to go back
     typePrint(description2)
     while True:
         hallway = input("Which hallway:\n1\n2\nGo back a room(type 'Go back' if you want to do this)\n").upper().strip()
@@ -399,18 +398,20 @@ def roomNine():
     if mini_boss_dead == False:
         room9 = "\nYou enter the hallway and find yourself in a room with ... a dragon!\nInitiating combat\n"
         typePrint(room9)
+        stat = f"\nStats:\nYour health: {user_health}\nDragon's health: {mini_boss_health}\n"
+        typePrint(stat)
         while True:
             user_damage = userAttack()
             mini_boss_health -= user_damage
             if mini_boss_health <= 0 or user_health <= 0:
                 break
-            stat1 = f"\nStats:\nYour health: {user_health}\nKallacks' health: {final_boss_health}\n"
+            stat1 = f"\nStats:\nYour health: {user_health}\nDragon's health: {mini_boss_health}\n"
             typePrint(stat1)
             boss_damage = miniBossAttack()
             user_health -= boss_damage
             if mini_boss_health <= 0 or user_health <= 0:
                 break
-            stat2 = f"\nStats:\nYour health: {user_health}\nKallacks' health: {final_boss_health}\n"
+            stat2 = f"\nStats:\nYour health: {user_health}\nDragon's health: {mini_boss_health}\n"
             typePrint(stat2)
         # if someone dead, check who.
         if user_health <= 0:
@@ -446,8 +447,10 @@ def roomTen():
     room10 = "\nYou enter the hallway and find yourself in a room filled with spider webs. Something laughs above you...\n"
     typePrint(room10)
     time.sleep(1)
-    monologue = "'MWAHAHAHAHAHAHA!\nWhat have we got here?'\n'Is it someone who dares chalenge me?'\n'I'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n\nInitiating combat\n"
+    monologue = "'MWAHAHAHAHAHAHA!'\n'What have we got here?'\n'Is it someone who dares chalenge me?'\n'I'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n\nInitiating combat\n"
     typePrint(monologue)
+    stat = f"\nStats:\nYour health: {user_health}\nKallacks' health: {final_boss_health}\n"
+    typePrint(stat)
     while True:
         user_damage = userAttack()
         final_boss_health -= user_damage
@@ -486,8 +489,8 @@ def userAttack():
     # potential moves: sword, broadsword, heal, splash potion, daggers, bow, spear, fireball
     while True:
         for key in moves.keys():
-            print(f"'{key}'")
-        print("You can also 'Heal' and throw a 'Splash potion'")
+            print(f"'{key}' Damage: {moves[key]}")
+        print(f"You can also 'Heal' (get back to full health) and throw a 'Splash potion' (damage enemy from afar)\nYou have {full_health_potions} heal potions and {splash_potions} splash potions\n")
         move = input("What would you like to do? (Type the name of the move):\n").upper().strip()
         if move == "SWORD":
             dmg = moves["sword"]
@@ -516,7 +519,8 @@ def userAttack():
             if full_health_potions >= 1:
                 user_health = user_full_health
                 full_health_potions -= 1
-                break
+                dmg = 0
+                return dmg
             else:
                 print("You don't have any heal potions to use.\nPlease pick a different move.")
                 continue
@@ -642,7 +646,7 @@ final_boss_health = 70
 
 # Begin actual game
 while True:
-    name = input("Welcome, what is your name:\n").capitalize().strip()
+    name = input("Welcome, what is your name:\n").title().strip()
     welcome = f"Welcome {name}!\nAre you ready to begin your adventure?\nIf your are, hit the 'Enter' key on your keyboard.\n"
     typePrint(welcome)
     # wait for user to hit enter
@@ -653,7 +657,7 @@ while True:
     stop_event.set()
     thread.join()
     # more game
-    backstory = "\nYou are a young Paladin who was traveling with your family on a big family adventure,\nwhen suddenly...\nYou and your family were walking along this wide river. You and your sibling decided to check out a rock hill nearby.\nYou poke around the rocks and find a loose one.\nWhile nudging it, it falls away and you fall into the rocks!\nYou hear your sibling scream in response to your scream.\nSlinding down what every you fell into, you hit the bottom and everything goes black for a minute.\n"
+    backstory = "\nYou are a young Paladin who was traveling with your family on a big adventure together,\nwhen suddenly...\nYou all were walking along this wide river. You and your sibling decided to check out a rock hill nearby.\nYou poke around the rocks and find a loose one.\nWhile nudging it, it falls away and you fall into the rocks!\nYou hear your sibling scream in response to you falling away.\nSlinding down what every you fell into, you hit the bottom and everything goes black for a minute.\n"
     typePrint(backstory)
     startRoom()
     ending = "Thank you for playing!\n"

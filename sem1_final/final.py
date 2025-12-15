@@ -1,6 +1,7 @@
 # LD 2nd Final Game
 import sys
 import threading
+import os
 import random
 import time
 delay = 0.06
@@ -18,6 +19,9 @@ def flashingText1(stop_event):
     sys.stdout.write("\033[?25h")  # Show the cursor again
     sys.stdout.flush()
 
+def clearTerminal():
+    os.system("cls" if os.name == "nt" else "clear")
+
 def typePrint(strng):
     for char in strng:
         print(char, end="", flush=True)
@@ -25,24 +29,24 @@ def typePrint(strng):
 
 def startRoom():
     global picked_up_sword
-    description1 = "\nYou look around the room.\nScrammbling to find where you fell in, you relize you can't get back up.\nYou have to naviagte where you have ended up.\nTurning back around you notice something in the room.\nA sword on the ground in the middle of the room.\nWould you like to pick it up?\n"
-    typePrint(description1)
-    while True:
-        pick_up = input("Pick up sword:\nYes\nNo\n").upper().strip()
-        if pick_up == "YES":
-            if picked_up_sword == False:
+    if picked_up_sword == False:
+        description1 = "\nYou look around the room.\nScrammbling to find where you fell in, you relize you can't get back up.\nYou have to naviagte where you have ended up.\nTurning back around you notice something in the room.\nA sword on the ground in the middle of the room.\nWould you like to pick it up?\n"
+        typePrint(description1)
+        while True:
+            pick_up = input("Pick up sword:\nYes\nNo\n").upper().strip()
+            if pick_up == "YES":
                 moves["sword"] = 10
                 picked_up_sword = True
                 break
+            elif pick_up == "NO":
+                # user does not have sword
+                break
             else:
-                description1 = "\nYou have already picked up the sword on the ground.\n"
-                typePrint(description1)
-        elif pick_up == "NO":
-            # user does not have sword
-            break
-        else:
-            print("Invalid input, try again")
-            continue
+                print("Invalid input, try again")
+                continue
+    else:
+        description1 = "You enter the room and relize this is the room you fell into.\nYou don't see anything on the ground.\n"
+        typePrint(description1)
     description2 = "Looking further down the room, you see two hallways forward. Which one would you like to go down?\n"
     typePrint(description2)
     while True:
@@ -153,7 +157,7 @@ def roomThree():
     global god_gift
     global full_health_potions
     if god_gift == False:
-        room3 = "\nYou enter the first hallway and find yourself in an empty room.\nSuddenly, you see a giant flash of light, temporally blinding you while a figure decends from the light.\nIt is God, and he speeaks:\n'Welcome brave traveler. There are chalenges awiting you further into this cave. To help you, I have decided to grand you more power in your attacks. Use this power wisely.'\nYou feel a wave of power wash over you and you fell your attack power increase.\nGod leaves.\n" 
+        room3 = "\nYou enter the hallway and find yourself in an empty room.\nSuddenly, you see a giant flash of light, temporally blinding you while a figure decends from the light.\nIt is God, and he speaks:\n'Welcome brave traveler. There are chalenges awaiting you further into this cave.\nTo help you, I have decided to grand you more power in your attacks. Use this power wisely.'\nYou feel a wave of power wash over you and you fell your attack power increase.\nGod leaves.\n" 
         god_gift = True
         typePrint(room3)
     else:
@@ -418,7 +422,7 @@ def roomNine():
             userDead()
         else:
             mini_boss_dead = True
-            victory = "\nYou defeeated the dragon! You have been granted a new move called 'Fireball!'\nAfter defeating the dragon, you look around and only see the hallway you came in through.\n"
+            victory = "\nYou defeated the dragon! You have been granted a new move called 'Fireball!'\nAfter defeating the dragon, you look around and only see the hallway you came in through.\n"
             typePrint(victory)
             moves["fireball"] = 13
     else:
@@ -441,13 +445,13 @@ def roomTen():
 
     # Setting up the god_gift thing
     if god_gift == True:
-        for value in moves.values():
-            value += 4
+        for value in list(moves.keys()):
+            moves[value] += 4
 
     room10 = "\nYou enter the hallway and find yourself in a room filled with spider webs. Something laughs above you...\n"
     typePrint(room10)
     time.sleep(1)
-    monologue = "'MWAHAHAHAHAHAHA!'\n'What have we got here?'\n'Is it someone who dares chalenge me?'\n'I'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n\nInitiating combat\n"
+    monologue = "'MWAHAHAHAHAHAHA!'\n'What have we got here?'\n'Is it someone who dares challenge me?'\n'I'm sure you have seen the bodies in this cave, what makes you think you can defeat me?'\nKALLACKS: Eight Legged Scourge of the Caves\n'Are you ready to do this, child?'\n\nInitiating combat\n"
     typePrint(monologue)
     stat = f"\nStats:\nYour health: {user_health}\nKallacks' health: {final_boss_health}\n"
     typePrint(stat)
@@ -468,7 +472,7 @@ def roomTen():
     if user_health <= 0:
         userDead() 
     else:
-        victory = "\n'NOOOOOOOOOOOOOO! HOW COULD YOU DEFEAT ME?\n I AM KALLACKS, THE MOST POWERFUL MONSTER OUT THERE!\nHOW?\nHOOOOOWWW???'\n"
+        victory = "\n'NOOOOOOOOOOOOOO! HOW COULD YOU DEFEAT ME?'\n'I AM KALLACKS, THE MOST POWERFUL MONSTER OUT THERE!'\n'HOW?'\n'HOOOOOWWW???'\n"
         typePrint(victory)
         continued = "Kallacks stummbles and finally falls down, limp and dead.\n"
         typePrint(continued)
@@ -542,35 +546,35 @@ def miniBossAttack():
     if move == 1:
         # move is tail swing. 5 damage
         if land_attack > user_armor:
-            print("They hit!")
+            print("The Dragon hit!")
             dmg = 5
             return dmg
         else:
-            print("The Dragon missed!")
-            dmg = 0
+            print("The Dragon barly hits you!")
+            dmg = 2
             return dmg
     elif move == 2:
         # move is bite. 8 damage
         if land_attack > user_armor:
-            print("They hit!")
+            print("The Dragon hit!")
             dmg = 8
             return dmg
         else:
-            print("The Dragon missed!")            
-            dmg = 0
+            print("The Dragon barly hits you!")
+            dmg = 2
             return dmg
     elif move == 3:
         # move is fire spite. 9 damage
         if land_attack > user_armor:
-            print("They hit!")
+            print("The Dragon hit!")
             dmg = 9
             return dmg
         else:
-            print("The Dragon missed!")
-            dmg = 0
+            print("The Dragon barly hits you!")
+            dmg = 2
             return dmg
     else:
-        print("The Dragon missed!")
+        print("The Dragon doesn't attack!")
         dmg = 0
         return dmg
 
@@ -585,8 +589,8 @@ def finalBossAttack():
             dmg = 8
             return dmg
         else:
-            print("Kallacks missed!")
-            dmg = 0
+            print("Kallacks barley hits you!")
+            dmg = 2
             return dmg
     elif move == 2:
         # move is web up. 5 damage
@@ -595,8 +599,8 @@ def finalBossAttack():
             dmg = 5
             return dmg
         else:
-            print("Kallacks missed!")
-            dmg = 0
+            print("Kallacks barley hits you!")
+            dmg = 2
             return dmg
     elif move == 3:
         # move is poison. 10 damage
@@ -605,11 +609,11 @@ def finalBossAttack():
             dmg = 10
             return dmg
         else:
-            print("Kallacks missed!")
-            dmg = 0
+            print("Kallacks barley hits you!")
+            dmg = 2
             return dmg
     else:
-        print("Kallacks missed!")
+        print("Kallacks doesn't attack!")
         dmg = 0
         return dmg
 
@@ -646,6 +650,7 @@ final_boss_health = 70
 
 # Begin actual game
 while True:
+    clearTerminal()
     name = input("Welcome, what is your name:\n").title().strip()
     welcome = f"Welcome {name}!\nAre you ready to begin your adventure?\nIf your are, hit the 'Enter' key on your keyboard.\n"
     typePrint(welcome)
@@ -657,7 +662,7 @@ while True:
     stop_event.set()
     thread.join()
     # more game
-    backstory = "\nYou are a young Paladin who was traveling with your family on a big adventure together,\nwhen suddenly...\nYou all were walking along this wide river. You and your sibling decided to check out a rock hill nearby.\nYou poke around the rocks and find a loose one.\nWhile nudging it, it falls away and you fall into the rocks!\nYou hear your sibling scream in response to you falling away.\nSlinding down what every you fell into, you hit the bottom and everything goes black for a minute.\n"
+    backstory = "\nYou are a young Paladin who was traveling with your family on a big adventure together,\nwhen suddenly...\nYou all were walking along this wide river. You and your sibling decided to check out a rock hill nearby.\nYou poke around the rocks and find a loose one.\nWhile nudging it, it falls away and you fall into the rocks!\nYou hear your sibling scream in response to you falling into the rocks.\nSlinding down what every you fell into, you hit the bottom and everything goes black for a minute.\n"
     typePrint(backstory)
     startRoom()
     ending = "Thank you for playing!\n"
@@ -665,7 +670,9 @@ while True:
     play = input("Play again? 'Yes' or 'No':\n").upper().strip()
     if play == "YES":
         print("The game will restart in five seconds")
-        time.sleep(5)
+        for num in range(5,0,-1):
+            print(num)
+            time.sleep(1)
         continue
     else:
         print("The game will not be played again.\nThank you for playing!")
